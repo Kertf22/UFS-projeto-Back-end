@@ -15,5 +15,12 @@ PORT = 3333
 `````
 Colocando o link para os bancos de dados MONGODB
      
-          
     
+## Rodar o servidor
+
+Apenas será necessário escrever o comando
+````
+npm run dev
+````
+
+     
