@@ -1,10 +1,10 @@
 const UserRepository = require("../repository/UserRepository.js")
+
 const { compare } = require("bcryptjs")
 const { sign } = require("jsonwebtoken")
 
 class AuthenticateUserService {
     async execute(name,password){
-
         const userRepository = new UserRepository()
 
         // Acha o usuário

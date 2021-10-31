@@ -2,12 +2,14 @@ const CreateUserService = require("../service/CreateUserService.js")
 
 class CreateUserController {
     async handle(req, res){
-        const createUserSerivce = new CreateUserService()
-        const { name, password, imgUrl } = req.body;
+        const createUserSerivce = new CreateUserService();
+        const { name, password } = req.body;
 
-        const user = await createUserSerivce.execute({name, password, imgUrl})
+        var { location } = req.file;
 
-        return res.json(user)
+        const token = await createUserSerivce.execute({name, password, imgUrl:location});
+
+        return res.json(token);
     }
 }
 

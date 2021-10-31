@@ -17,13 +17,15 @@ const UserSchema = mongoose.Schema({
         type: Number,
         default: 0,
     },
+    admim:{
+        type: Boolean,
+        default: false,
+    },
     created_at: {
         type: Number,
-        default: Date.now(),
     },
     updated_at:{
         type: Number,
-        default: Date.now(),
     },
 })
 

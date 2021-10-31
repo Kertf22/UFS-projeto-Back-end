@@ -11,8 +11,8 @@ function isAuthenticated(req,res,next){
     }
 
     //
-    const [,token] = authToken.split(' ')
-
+    const [,token] = authToken.split(' ');
+    
     try {
         const { sub } = verify(
             token,

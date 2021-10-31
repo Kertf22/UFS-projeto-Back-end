@@ -6,6 +6,8 @@ class UserRepository{
             name,
             password,
             imgUrl,
+            created_at:Date.now(),
+            updated_at:Date.now()
         })
 
         const data = await user.save()
@@ -14,7 +16,7 @@ class UserRepository{
     }
 
     async update({id}){
-        const user = await Users.findOneAndUpdate({_id: id} ,{$inc : {'posts': 1} })
+        const user = await Users.findOneAndUpdate({_id: id} ,{$inc : {'posts': 1}, updated_at:Date.now() })
 
         return user
     }
@@ -37,7 +39,14 @@ class UserRepository{
     }
 
     async findbyId({id}){
-        const user = await Users.findById(id,{name:1,imgUrl:1,_id:1,posts:1})
+        const user = await Users.findById(id,{
+            name:1,
+            imgUrl:1,
+            _id:1,
+            posts:1,
+            created_at:1,
+            updated_at:1
+        })
 
         return user
     }

@@ -1,12 +1,14 @@
 const UserRepository = require("../repository/UserRepository.js")
+const AuthenticateUserService = require("./AuthenticateUserService.js")
+
 const { hash } = require("bcryptjs")
 
 class CreateUserService {
-    async execute({ name,password,imgUrl }){
+    async execute({name,password,imgUrl}){
         const userRepository = new UserRepository()
+        const authenticateUserService = new AuthenticateUserService()
 
         // Verificar se o nome já está sendo utilizado
-
         const ExistUser = await userRepository.find(name)
 
         if (ExistUser) {
@@ -16,13 +18,16 @@ class CreateUserService {
         // Criptografia da senha
         const passwordHash = await hash(password, 8)
 
-        const data = await userRepository.create({
+        await userRepository.create({
             name,
             password:passwordHash,
             imgUrl
         })
 
-        return data
+        // Já logar e autenticar o usuário
+        const token = await authenticateUserService.execute(name,password)
+        
+        return token;
     }
 }
 

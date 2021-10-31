@@ -10,7 +10,7 @@ class DeletePostService {
             throw new Error("Post não existe");
         }
 
-        if (post.user_id != user_id){
+        if (post.user.user_id != user_id){
             throw new Error("Não autorizado");  
         }
 

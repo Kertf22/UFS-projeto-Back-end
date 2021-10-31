@@ -1,10 +1,6 @@
 const mongoose = require("mongoose");
 
 const PostSchema = mongoose.Schema({
-    user_id:{
-        type: String,
-        required:true
-    },
     title:{
         type: String,
         required:true
@@ -17,17 +13,24 @@ const PostSchema = mongoose.Schema({
         type: String,
         default: "",
     },
+    user:{
+        type: Object,
+        default: {
+            user_id:"",
+            userName:"", 
+            userImgUrl:""
+        },
+        required: true,
+    },
     comments:{
         type: Array,
         default: [],
     },
     created_at: {
         type: Number,
-        default: Date.now(),
     },
     updated_at:{
         type: Number,
-        default: Date.now(),
     },
 })
 

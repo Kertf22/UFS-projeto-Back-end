@@ -3,8 +3,9 @@ const DeletePostService = require("../service/DeletePostService.js")
 
 class DeletePostController {
     async handle(req,res) {
-
+        console.log(req.body)
         const { post_id } = req.body
+
         const deletePostService = new DeletePostService()
 
         const post = await deletePostService.execute({

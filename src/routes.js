@@ -8,6 +8,7 @@ const GetAllPostsController = require("./controllers/getAllPostsController.js");
 const UserPostController = require("./controllers/UserPostController.js");
 const GetUserController = require("./controllers/GetUserController.js")
 const { isAuthenticated } = require("./middleware/isAuthenticated.js");
+const upload = require("./config/multer.js");
 
 
 const routes = Router();
@@ -21,14 +22,13 @@ const getAllPostsController = new GetAllPostsController();
 const userPostController = new UserPostController();
 
 routes
-    .post("/user",createUserController.handle)
+    .post("/user", upload.single("file"), createUserController.handle)
     .post("/user/login", authenticateUserController.handle)
-    .get("/user",isAuthenticated, getUserController.handle)
+    .get("/user", isAuthenticated, getUserController.handle)
     .post("/user/post", isAuthenticated ,createPostController.handle)
-    .patch("/posts/comment", isAuthenticated ,createCommentController.handle)
     .delete("/user/post", isAuthenticated ,deletePostController.handle)
-    .get("/user/posts",isAuthenticated, userPostController.handle)    
-    .get("/posts",isAuthenticated, getAllPostsController.handle)
-
+    .patch("/posts/comment", isAuthenticated ,createCommentController.handle)
+    .get("/user/posts", isAuthenticated, userPostController.handle)    
+    .get("/posts", isAuthenticated, getAllPostsController.handle)
 
 module.exports = { routes }
