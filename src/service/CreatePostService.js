@@ -22,6 +22,7 @@ class CreatePostService{
         // Atualiza o número de post do usuário
         await userRepository.update({
             id:user_id,
+            quantity:1
         })
 
         return post

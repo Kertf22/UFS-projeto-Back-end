@@ -12,9 +12,8 @@ class CreateUserService {
         const ExistUser = await userRepository.find(name)
 
         if (ExistUser) {
-            throw new Error("Já existe esse nome no banco de dados!")
+            throw Error("Nome já utilizado!");
         }
-
         // Criptografia da senha
         const passwordHash = await hash(password, 8)
 

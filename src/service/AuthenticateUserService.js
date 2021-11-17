@@ -11,14 +11,14 @@ class AuthenticateUserService {
         const user = await userRepository.find(name)
         
         if(!user){
-            throw new Error("Nome // Senha incorretos.")
+            throw Error("Nome // Senha incorretos.")
         }
 
         // Compara as senhas
         const hashPassword = await compare(password,user.password)
 
         if (!hashPassword){
-            throw new Error("Nome // Senha incorretos.")
+            throw Error("Nome // Senha incorretos.")
         }
 
         // Cria token jwt

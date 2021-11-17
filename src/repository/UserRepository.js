@@ -15,12 +15,16 @@ class UserRepository{
         return data
     }
 
-    async update({id}){
-        const user = await Users.findOneAndUpdate({_id: id} ,{$inc : {'posts': 1}, updated_at:Date.now() })
-
+    async update({id,quantity}){
+        const user = await Users.findOneAndUpdate({_id: id} ,{$inc : {'posts': quantity}, updated_at:Date.now() })
         return user
     }
 
+    async updateImgUrl({_id,imgUrl}){
+        const user = await Users.findOneAndUpdate({_id: _id} ,{imgUrl: imgUrl, updated_at:Date.now()});
+
+        return user
+    }
     async delete({id}){
         const user = await Users.remove({_id:id})
 
@@ -44,6 +48,7 @@ class UserRepository{
             imgUrl:1,
             _id:1,
             posts:1,
+            admim:1,
             created_at:1,
             updated_at:1
         })
