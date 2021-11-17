@@ -2,7 +2,6 @@ const express = require("express")
 require('express-async-errors');
 require("./db/connection.js")
 const { routes } = require("./routes")
-
 var cors = require('cors');
 const app = express();
 

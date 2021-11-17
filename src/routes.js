@@ -25,6 +25,7 @@ const getAllPostsController = new GetAllPostsController();
 const userPostController = new UserPostController();
 const getUserIdController = new GetUserIdController();
 const changeUserPhotoController = new ChangeUserPhotoController()
+
 routes
     .post("/user", upload.single("file"), createUserController.handle)
     .post("/user/login", authenticateUserController.handle)
@@ -34,11 +35,10 @@ routes
     .patch("/posts/comment", isAuthenticated ,createCommentController.handle)
     .get("/user/:id/posts", isAuthenticated, userPostController.handle)    
     .get("/posts", isAuthenticated, getAllPostsController.handle)
-<<<<<<< HEAD
     .get("/user/:id", isAuthenticated, getUserIdController.handle)
     .post("/user/profile", isAuthenticated, upload.single("file"),changeUserPhotoController.handler)
 module.exports = { routes }
-=======
 
-module.exports = { routes }
->>>>>>> 316355afa7d5669cb6df8f5ada9edbd7955c3be3
+
+
+
